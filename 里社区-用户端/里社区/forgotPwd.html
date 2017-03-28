@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/baseui.css" />
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+
+		<style>
+			body {
+				background-color: #ffffff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">忘记密码</h1>
+		</header>
+		<div class="mui-content bg-white">
+			<div class="mui-content-padded">
+				<div id="" class="mui-input-row">
+					<input type="text" class="signMs mui-input-clear" id="mobileNum" runat="server" placeholder="请输入您的手机号码" />
+					<div class="position-relative">
+						<input type="button" id="getMsgCheckCode" value="点击获取验证码" onclick="getMsgCode(this)" />
+						<div id="" class="margin-left-130">
+							<input type="text" class="signMs" id="msgCheckCode" runat="server" placeholder="" />
+						</div>
+					</div>
+				</div>
+
+				<button id='nextBtn' class="mui-btn mui-btn-block bg-theme color-white" type='button'>确认，下一步</button>
+			</div>
+		</div>
+
+		<script src="js/mui.min.js"></script>
+		<script src="js/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			//手机号码验证
+			var nextBtn = document.getElementById("nextBtn");
+			var mobileNum = document.getElementById("mobileNum");
+			var msgCheckCode = document.getElementById("msgCheckCode");
+
+			nextBtn.addEventListener('tap', function() {
+				validatemobile(mobileNum);
+
+			});
+
+			function validatemobile(par) {
+				var translatematrixREa = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+				var matrix = translatematrixREa.test(par.value);
+				//手机号码验证结果
+				if(mobileNum.value == '') {
+					mui.alert("请填写您的手机号码。");
+				} else {
+					if(matrix == false) {
+						mui.alert("请填写正确的手机号码！");
+					} else {
+						if(msgCheckCode.value == "") {
+							mui.alert("请填写短信验证码");
+						} else {
+							$.ajax({
+								type: 'post',
+								dataType: 'json',
+								url: "http://api.sunrisekid.com/forgetcode",
+								data: {
+									mobile: mobileNum.value,
+									sms_code: msgCheckCode.value
+								},
+								success: function(data) {
+									if(data.error_code == 0) { //返回error_code=1代表失败，error_code=0代表成功
+										mui.alert(data.error_msg);
+
+										window.location.href = "setNewPwd?id=" + $("#mobileNum").val();
+									} else {
+										mui.alert(data.error_msg);
+									}
+								}
+							});
+						}
+					}
+				}
+			}
+
+			//获取短信验证码
+			function getMsgCode(obj) {
+				var translatematrixREa = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+				var matrix = translatematrixREa.test(mobileNum.value);
+				//验证结果
+				if(mobileNum.value == '') {
+					mui.alert("请填写您的手机号码。");
+				} else if(matrix == false) {
+					mui.alert("请填写正确的手机号码！");
+				} else {
+					$.ajax({
+						type: 'post',
+						dataType: 'json',
+						url: "http://api.sunrisekid.com/get_code",
+						data: {
+							mobile: mobileNum.value
+						},
+						success: function(data) {
+							if(data.error_code == 0) { //返回error_code=1代表失败，error_code=0代表成功
+								mui.alert("已发送");
+								settime(obj);
+							} else {
+								mui.alert(data.error_msg);
+							}
+						}
+					});
+				}
+			}
+
+			//定义一个60秒计时器变量
+			var countdown = 60;
+			//构造一个倒计时函数
+			function settime(obj) {
+				if(countdown == 0) {
+					obj.removeAttribute("disabled");
+					obj.value = "免费获取验证码";
+					countdown = 60;
+					return;
+				} else {
+					obj.setAttribute("disabled", true);
+					obj.value = "重新发送(" + countdown + ")";
+					countdown--;
+				}
+				//过1秒后执行倒计时函数
+				setTimeout(function() {
+					settime(obj)
+				}, 1000)
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/baseui.css" />
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+
+		<style>
+			body {
+				background-color: #ffffff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">设置新密码</h1>
+		</header>
+		<div class="mui-content bg-white">
+			<div class="mui-content-padded">
+				<div id="" class="mui-input-row">
+					<input type="password" class="signMs mui-input-clear mui-input" id="password" runat="server" placeholder="请输入您的密码" />
+					<div id="" class="mui-input-row">
+						<input type="password" class="signMs mui-input-clear mui-input" id="password_confirm" runat="server" placeholder="请再次输入密码" />
+					</div>
+				</div>
+				<div id="" class=" fsize-0-11 mui-text-left color-gray">
+					<span class="color-theme text-bold">提示：</span> 请填写6到20位的密码，且密码仅能由数字和字母组成
+				</div>
+				<div id='' class="mui-text-center color-gray margin-top-bottom-15">
+					请妥善保管您的密码
+				</div>
+
+				<button id='confirmPwdBtn' class="mui-btn mui-btn-block bg-theme color-white margin-top-15" type='button'>登&nbsp;录</button>
+			</div>
+		</div>
+
+		<script src="js/mui.min.js"></script>
+		<script src="js/jquery-2.1.3.min.js"></script>
+		<script src="js/urlParams.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			//密码验证
+			var passwordBox = document.getElementById('password');
+			var passwordConfirmBox = document.getElementById('password_confirm');
+
+			confirmPwdBtn.addEventListener('tap', function() {
+				var password1 = passwordBox.value;
+				var passwordConfirm = passwordConfirmBox.value;
+				if(password1 == "" || !password1) {
+					mui.alert("请输入您的密码！");
+				} else if(passwordConfirm.length < 6) {
+					mui.alert("密码至少要大于等于6位！");
+				} else if(passwordConfirm.length > 20) {
+					mui.alert("密码不能超过20位！");
+				} else if(passwordConfirm == "" || !passwordConfirm) {
+					mui.alert("请输入您的确认密码！");
+				} else if(passwordConfirm != password1) {
+					mui.alert('两次输入的密码不一致！');
+					return;
+				} else {
+					var pwdValidate = /^[0-9a-zA-Z]+$/;
+					var pwdValidateRes = pwdValidate.test(passwordConfirm);
+					if(pwdValidateRes == false) {
+						mui.alert("密码只能由数字和字母组成！");
+					} else {
+						//						mui.alert("密码设置成功！");
+						
+						//获取前一个页面的手机号码
+						var mobileNumPre=$.request.queryString["id"];
+						
+						$.ajax({
+							type: 'post',
+							dataType: 'json',
+							url: "http://api.sunrisekid.com/forgetpwd",
+							data: {
+								mobile: mobileNumPre,
+								password: passwordBox.value,
+								confirm_pwd: passwordConfirmBox.value
+							},
+							success: function(data) {
+								if(data.error_code == 0) { //返回error_code=1代表失败，error_code=0代表成功
+									mui.alert(data.error_msg);
+								} else {
+									mui.alert(data.error_msg);
+								}
+							}
+						});
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

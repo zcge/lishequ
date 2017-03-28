@@ -1,0 +1,306 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/baseui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commonui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<!--App自定义的css-->
+		<style type="text/css">
+			.mui-table-view .mui-media-object {
+				line-height: 80px;
+				max-width: 80px;
+				height: 80px;
+			}
+			
+			p.mui-ellipsis {
+				font-size: 0.5em;
+				line-height: 1.5em;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-input-row mui-search col-percent-90 mui-pull-left">
+				<input type="search" class="mui-input-clear" placeholder="">
+			</div>
+			<a href="../my/myMessage.html"><span class="mui-btn mui-btn-link mui-icon mui-icon-chat mui-pull-right padding-top-bottom-0 padding-left-0 margin-left-0"></span></a>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a id="defaultTab" class="mui-col mui-col-xs-4 mui-active" onclick="window.location.href='../business/businessList.html'">
+				<span class="mui-tab-label">品牌商户</span>
+			</a>
+			<a class="mui-col mui-col-xs-4" onclick="window.location.href='../experienceService/esList.html'">
+				<span class="mui-tab-label">预约体验</span>
+			</a>
+			<a class="mui-col mui-col-xs-4" onclick="window.location.href='../my/myIndex.html'">
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<!--<div class="width-100 border padding-10" id="testClick" style="position: fixed;top: 44px;z-index: 99;" onclick="myFunction()">
+			点击
+		</div>-->
+		<div class="screening navbar-wrapper mui-hidden" id="navbar-wrapper" style="position: fixed;top: 44px;">
+			<ul>
+				<li class="Regional">距离排序</li>
+				<li class="Brand">授课年龄</li>
+				<li class="Sort">服务类型</li>
+			</ul>
+		</div>
+
+		<div class="grade-eject" style="margin-top: 0;">
+			<ul class="grade-w" id="gradew">
+				<li onclick="grade1(this)">附近</li>
+				<li onclick="grade1(this)">西湖区</li>
+				<li onclick="grade1(this)">拱墅区</li>
+				<li onclick="grade1(this)">萧山区</li>
+				<li onclick="grade1(this)">江干区</li>
+				<li onclick="grade1(this)">滨江区</li>
+				<li onclick="grade1(this)">余杭区</li>
+				<li onclick="grade1(this)">上城区</li>
+				<li onclick="grade1(this)">临安市</li>
+				<li onclick="grade1(this)">富阳市</li>
+				<li onclick="grade1(this)">下城区</li>
+				<li onclick="grade1(this)">桐庐县</li>
+				<li onclick="grade1(this)">建德市</li>
+				<li onclick="grade1(this)">淳安县</li>
+			</ul>
+			<ul class="grade-t" id="gradet">
+				<li onclick="gradet(this)">附近（智能距离）</li>
+				<li onclick="gradet(this)">1千米</li>
+				<li onclick="gradet(this)">3千米</li>
+				<li onclick="gradet(this)">5千米</li>
+				<li onclick="gradet(this)">10千米</li>
+				<li onclick="gradet(this)">全程</li>
+			</ul>
+		</div>
+		<!-- End grade -->
+		<!-- Category -->
+		<div class="Category-eject">
+			<ul class="Category-w" id="Categorytw">
+				<li onclick="Categorytw(this)">全部</li>
+				<li onclick="Categorytw(this)">幼儿0-3岁</li>
+				<li onclick="Categorytw(this)">幼童3-6岁</li>
+				<li onclick="Categorytw(this)">大童6岁以上</li>
+			</ul>
+		</div>
+		<!-- End Category -->
+		<!-- Category -->
+		<div class="Sort-eject Sort-height">
+			<ul class="Sort-Sort" id="Sort-Sort">
+				<li onclick="Sorts(this)">婴儿游泳</li>
+				<li onclick="Sorts(this)">亲子摄影</li>
+				<li onclick="Sorts(this)">早教中心</li>
+				<li onclick="Sorts(this)">孕产护理</li>
+				<li onclick="Sorts(this)">儿童乐园</li>
+				<li onclick="Sorts(this)">幼儿园</li>
+				<li onclick="Sorts(this)">幼儿教育</li>
+				<li onclick="Sorts(this)">托班/托儿所</li>
+			</ul>
+		</div>
+
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div id="" class="bg-white">
+
+					<div id="slider" class="mui-slider">
+						<div class="mui-slider-group mui-slider-loop">
+							<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<!--<a href="#">-->
+								<img src="../img/experienceService/img-1.jpg">
+								<!--</a>-->
+							</div>
+							<!-- 第一张 -->
+							<div class="mui-slider-item">
+								<a href="#">
+									<img src="../img/experienceService/img-1.jpg">
+								</a>
+							</div>
+							<!-- 第二张 -->
+							<div class="mui-slider-item">
+								<a href="#">
+									<img src="../img/experienceService/img-1.jpg">
+								</a>
+							</div>
+							<!-- 第三张 -->
+							<div class="mui-slider-item">
+								<a href="#">
+									<img src="../img/experienceService/img-1.jpg">
+								</a>
+							</div>
+							<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<a href="#">
+									<img src="../img/experienceService/img-1.jpg">
+								</a>
+							</div>
+						</div>
+						<div class="mui-slider-indicator">
+							<div class="mui-indicator mui-active"></div>
+							<div class="mui-indicator"></div>
+							<div class="mui-indicator"></div>
+						</div>
+					</div>
+					<!--				
+				<p>
+					<img src="../img/experienceService/img-1.jpg" data-preview-src="" data-preview-group="1" />
+				</p>-->
+				</div>
+				<div id="" class="blankDiv">
+					
+				</div>
+
+				<div class="screeningOnlySee margin-bottom-10">
+					<ul>
+						<li class="">距离排序</li>
+						<li class="">授课年龄</li>
+						<li class="">服务类型</li>
+					</ul>
+				</div>
+
+				<!--数据列表-->
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li id="liContents" class="mui-table-view-cell mui-media mui-hidden">
+						<a href="../business/businessDetail.html">
+							<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+							<div class="mui-media-body">
+								<div class='mui-ellipsis'>
+									英语学习体验课程
+								</div>
+								<div class="mui-col mui-col-xs-9">
+									<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+									<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+								</div>
+								<div class="mui-col mui-col-xs-3">
+									<p class='mui-ellipsis mui-text-right padding-bottom-8'>168m</p>
+								</div>
+								<p class='mui-ellipsis'>
+									<span class="mui-icon mui-icon-location fsize-1-3"></span> 三墩公平路同仁汇邻里中心108-2
+								</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/jquery-2.1.3.min.js"></script>
+	<script src="../js/demo.js"></script>
+	<script>
+		//mui初始化
+		//		mui.init();
+
+		mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					callback: pulldownRefresh
+				},
+				up: {
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh
+				}
+			}
+		});
+
+		var liContents = document.getElementById("liContents");
+		//		alert(muiMe.innerHTML);
+
+		/**
+		 * 下拉刷新具体业务实现
+		 */
+		function pulldownRefresh() {
+			setTimeout(function() {
+				var table = document.body.querySelector('.mui-table-view');
+				var cells = document.body.querySelectorAll('.mui-table-view-cell');
+				for(var i = cells.length, len = i + 3; i < len; i++) {
+					var li = document.createElement('li');
+					li.className = 'mui-table-view-cell';
+					li.innerHTML = liContents.innerHTML;
+					//下拉刷新，新纪录插到最前面；
+					table.insertBefore(li, table.firstChild);
+				}
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+			}, 1500);
+		}
+		var count = 0;
+		/**
+		 * 上拉加载具体业务实现
+		 */
+		function pullupRefresh() {
+			if(count == 0) {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+
+					for(var i = 0; i < 3; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = liContents.innerHTML;
+
+						table.appendChild(li);
+					}
+				}, 0);
+			} else {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for(var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = liContents.innerHTML;
+						table.appendChild(li);
+					}
+				}, 1500);
+			}
+		}
+		if(mui.os.plus) {
+			mui.plusReady(function() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				}, 1000);
+
+			});
+		} else {
+			mui.ready(function() {
+				mui('#pullrefresh').pullRefresh().pullupLoading();
+			});
+		}
+
+		//监听tap事件，解决a标签不能跳转页面问题
+		mui('.mui-table-view').on('tap', 'a', function() {
+			mui.openWindow(this.href);
+			//			window.location.href=this.href;
+		});
+
+		var slider = mui("#slider");
+		slider.slider({
+			interval: 5000
+		});
+
+//		function myFunction() {
+//			var navbarToTop = $(".screeningOnlySee").offset().top;
+////			alert(navbarToTop);
+//			
+//			$(".mui-content").animate({
+//				scrollTop: navbarToTop
+//			}, 0); //2秒滑动到指定位置
+//		}
+	</script>
+
+</html>

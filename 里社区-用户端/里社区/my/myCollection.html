@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
+		<link rel="stylesheet" type="text/css" href="../css/baseui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commonui.css" />
+		<link rel="stylesheet" href="../css/app.css" />
+
+		<style type="text/css">
+			.mui-table-view .mui-media-object,.mui-slider .mui-slider-group .mui-slider-item img {
+				line-height: 80px;
+				max-width: 80px;
+				height: 80px;
+			}
+			
+			
+			p.mui-ellipsis {
+				font-size: 0.5em;
+				line-height: 1.5em;
+			}
+			
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的收藏</h1>
+			<a class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">管理</a>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted bg-white">
+					<a class="mui-control-item" href="#item1mobile">
+						体验项目
+					</a>
+					<a class="mui-control-item" href="#item2mobile">
+						项目
+					</a>
+					<a class="mui-control-item" href="#item3mobile">
+						商家
+					</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active border-none">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<!--<ul class="mui-table-view">
+									<li class="mui-table-view-cell">
+										第一个选项卡子项-20
+									</li>
+								</ul>-->
+								<ul class="mui-table-view margin-top-10">
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+											<div class="mui-media-body">
+												<div class='mui-ellipsis'>
+													英语学习体验课程
+												</div>
+												<div class="mui-col mui-col-xs-9">
+													<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+													<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+												</div>
+												<div class="mui-col mui-col-xs-3">
+													<p class='mui-ellipsis mui-text-right padding-bottom-8'>168m</p>
+												</div>
+												<p class='mui-ellipsis'>
+													<span class="mui-icon mui-icon-location fsize-1-3"></span> 三墩公平路同仁汇邻里中心108-2
+												</p>
+											</div>
+											<p id="" class="mui-col-xs-12 mui-ellipsis padding-top-10 margin-top-10 border-top">
+												2017/02/17&nbsp;09:06
+											</p>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;" class="bg-lightgray">
+											<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+											<div class="mui-media-body">
+												<div class='mui-ellipsis color-gray'>
+													英语学习体验课程
+												</div>
+												<div class="mui-col mui-col-xs-9">
+													<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+													<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+												</div>
+												<div class="mui-col mui-col-xs-3">
+													<p class='mui-ellipsis mui-text-right padding-bottom-8'>168m</p>
+												</div>
+												<p class='mui-ellipsis'>
+													<span class="mui-icon mui-icon-location fsize-1-3"></span> 三墩公平路同仁汇邻里中心108-2
+												</p>
+											</div>
+											<p id="" class="mui-col-xs-12 mui-ellipsis padding-top-10 margin-top-10 border-top">
+												2017/02/17&nbsp;09:06
+												<p class="position-absolute position-bottom-10 position-right-10 mui-ellipsis">
+													订单已失效
+												</p>
+											</p>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;" class="bg-lightgray">
+											<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+											<div class="mui-media-body">
+												<div class='mui-ellipsis color-gray'>
+													英语学习体验课程
+												</div>
+												<div class="mui-col mui-col-xs-9">
+													<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+													<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+												</div>
+												<div class="mui-col mui-col-xs-3">
+													<p class='mui-ellipsis mui-text-right padding-bottom-8'>168m</p>
+												</div>
+												<p class='mui-ellipsis'>
+													<span class="mui-icon mui-icon-location fsize-1-3"></span> 三墩公平路同仁汇邻里中心108-2
+												</p>
+											</div>
+											<p id="" class="mui-col-xs-12 mui-ellipsis padding-top-10 margin-top-10 border-top">
+												2017/02/17&nbsp;09:06
+												<p class="position-absolute position-bottom-10 position-right-10 mui-ellipsis">
+													订单已失效
+												</p>
+											</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content border-none">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<!--<ul class="mui-table-view">
+									<li class="mui-table-view-cell">
+										第一个选项卡子项-20
+									</li>
+								</ul>-->
+								<ul class="mui-table-view margin-top-10">
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+											<div class="mui-media-body">
+												儿童英语
+												<div class='mui-ellipsis padding-top-bottom-8 color-gray'>
+													英语&nbsp;1-3岁&nbsp;<span id="" class="color-red">25-100节</span>
+												</div>
+												<div id="">
+													<div id="" class="mui-col mui-col-xs-8">
+														&yen;32000
+													</div>
+													<div id="" class="mui-col mui-col-xs-4 mui-text-right color-gray">
+														<!--<p class='mui-ellipsis mui-text-right' style="vertical-align: bottom;">168m</p>-->
+													</div>
+												</div>
+											</div>
+											<p id="" class="mui-col-xs-12 mui-ellipsis padding-top-10 margin-top-10 border-top">
+												2017/02/17&nbsp;09:06
+											</p>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;" class="bg-lightgray">
+											<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+											<div class="mui-media-body color-gray">
+												儿童英语
+												<div class='mui-ellipsis padding-top-bottom-8 color-gray'>
+													英语&nbsp;1-3岁&nbsp;<span id="" class="">25-100节</span>
+												</div>
+												<div id="">
+													<div id="" class="mui-col mui-col-xs-8">
+														&yen;32000
+													</div>
+													<div id="" class="mui-col mui-col-xs-4 mui-text-right color-gray">
+														<!--<p class='mui-ellipsis mui-text-right' style="vertical-align: bottom;">168m</p>-->
+													</div>
+												</div>
+											</div>
+											<p id="" class="mui-col-xs-12 mui-ellipsis padding-top-10 margin-top-10 border-top">
+												2017/02/17&nbsp;09:06
+												<p class="position-absolute position-bottom-10 position-right-10 mui-ellipsis">
+													订单已失效
+												</p>
+											</p>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+											<div class="mui-media-body">
+												儿童英语
+												<div class='mui-ellipsis padding-top-bottom-8 color-gray'>
+													英语&nbsp;1-3岁&nbsp;<span id="" class="color-red">25-100节</span>
+												</div>
+												<div id="">
+													<div id="" class="mui-col mui-col-xs-8">
+														&yen;32000
+													</div>
+													<div id="" class="mui-col mui-col-xs-4 mui-text-right color-gray">
+														<!--<p class='mui-ellipsis mui-text-right' style="vertical-align: bottom;">168m</p>-->
+													</div>
+												</div>
+											</div>
+											<p id="" class="mui-col-xs-12 mui-ellipsis padding-top-10 margin-top-10 border-top">
+												2017/02/17&nbsp;09:06
+											</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content border-none">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<!--<ul class="mui-table-view">
+									<li class="mui-table-view-cell">
+										第一个选项卡子项-20
+									</li>
+								</ul>-->
+								<ul class="mui-table-view margin-top-10">
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+											<div class="mui-media-body">
+												<div class='mui-ellipsis'>
+													英语学习体验课程
+												</div>
+												<div class="mui-col mui-col-xs-8">
+													<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+													<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+												</div>
+												<div class="mui-col mui-col-xs-4">
+													<p class='mui-ellipsis mui-text-right'>均价：&yen;30000</p>
+													<p class='mui-ellipsis mui-text-right'>168m</p>
+												</div>
+												<p class='mui-ellipsis'>
+													<span class="mui-icon mui-icon-location fsize-1-3"></span> 三墩公平路同仁汇邻里中心108-2
+												</p>
+											</div>
+											<p id="" class="mui-col-xs-12 mui-ellipsis padding-top-10 margin-top-10 border-top">
+												2017/02/17&nbsp;09:06
+											</p>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+											<div class="mui-media-body">
+												<div class='mui-ellipsis'>
+													英语学习体验课程
+												</div>
+												<div class="mui-col mui-col-xs-8">
+													<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+													<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+												</div>
+												<div class="mui-col mui-col-xs-4">
+													<p class='mui-ellipsis mui-text-right'>均价：&yen;30000</p>
+													<p class='mui-ellipsis mui-text-right'>168m</p>
+												</div>
+												<p class='mui-ellipsis'>
+													<span class="mui-icon mui-icon-location fsize-1-3"></span> 三墩公平路同仁汇邻里中心108-2
+												</p>
+											</div>
+											<p id="" class="mui-col-xs-12 mui-ellipsis padding-top-10 margin-top-10 border-top">
+												2017/02/17&nbsp;09:06
+											</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script>
+			$(function() {
+				var WHeight = $(window).innerHeight();
+				var BHeight = WHeight - 86;
+				$(".mui-control-content").innerHeight(BHeight + "px");
+				
+				$.ajax({
+							type: 'post',
+							dataType: 'json',
+							url: "http://api.sunrisekid.com/collection",
+							data: {
+								member_id: '1',
+								object_id: '1',
+								type:'1'
+							},
+							success: function(data) {
+								if(data.error_code == 0) { //返回error_code=1代表失败，error_code=0代表成功
+									mui.alert(data.error_msg);
+								} else {
+									mui.alert(data.error_msg);
+								}
+							}
+						});
+				
+			});
+
+			mui.init({
+				swipeBack: false
+			});
+			(function($) {
+//				$('.mui-scroll-wrapper').scroll({
+//					indicators: true //是否显示滚动条
+//				});
+				
+				
+				//阻尼系数
+				var deceleration = mui.os.ios?0.003:0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration:deceleration
+				});
+				$.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						$(pullRefreshEl).pullToRefresh({
+							down: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										var ul = self.element.querySelector('.mui-table-view');
+										ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
+										self.endPullDownToRefresh();
+									}, 1000);
+								}
+							},
+							up: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										var ul = self.element.querySelector('.mui-table-view');
+										ul.appendChild(createFragment(ul, index, 5));
+										self.endPullUpToRefresh();
+									}, 1000);
+								}
+							}
+						});
+					});
+					var createFragment = function(ul, index, count, reverse) {
+						var length = ul.querySelectorAll('li').length;
+						var fragment = document.createDocumentFragment();
+						var li;
+						for (var i = 0; i < count; i++) {
+							li = document.createElement('li');
+							li.className = 'mui-table-view-cell mui-media';
+							li.innerHTML = '第' + (index + 1) + '个选项卡子项-' + (length + (reverse ? (count - i) : (i + 1)));
+							fragment.appendChild(li);
+						}
+						return fragment;
+					};
+				});
+				
+
+			})(mui);
+		</script>
+	</body>
+
+</html>

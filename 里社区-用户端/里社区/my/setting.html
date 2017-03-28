@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
+		<link rel="stylesheet" type="text/css" href="../css/baseui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commonui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/feedback.css" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.mui-views,
+			.mui-view,
+			.mui-pages,
+			.mui-page,
+			.mui-page-content {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #efeff4;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item {
+				height: 100%;
+			}
+			
+			.mui-pages {
+				top: 46px;
+				height: auto;
+			}
+			
+			.mui-scroll-wrapper,
+			.mui-scroll {
+				background-color: #efeff4;
+			}
+			
+			.mui-page.mui-transitioning {
+				-webkit-transition: -webkit-transform 300ms ease;
+				transition: transform 300ms ease;
+			}
+			
+			.mui-page-left {
+				-webkit-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+			}
+			
+			.mui-ios .mui-page-left {
+				-webkit-transform: translate3d(-20%, 0, 0);
+				transform: translate3d(-20%, 0, 0);
+			}
+			
+			.mui-navbar {
+				position: fixed;
+				right: 0;
+				left: 0;
+				z-index: 10;
+				height: 44px;
+				background-color: #f7f7f8;
+			}
+			
+			.mui-navbar .mui-bar {
+				position: absolute;
+				background: transparent;
+				text-align: center;
+			}
+			
+			.mui-android .mui-navbar-inner.mui-navbar-left {
+				opacity: 0;
+			}
+			
+			.mui-ios .mui-navbar-left .mui-left,
+			.mui-ios .mui-navbar-left .mui-center,
+			.mui-ios .mui-navbar-left .mui-right {
+				opacity: 0;
+			}
+			
+			.mui-navbar .mui-btn-nav {
+				-webkit-transition: none;
+				transition: none;
+				-webkit-transition-duration: .0s;
+				transition-duration: .0s;
+			}
+			
+			.mui-navbar .mui-bar .mui-title {
+				display: inline-block;
+				width: auto;
+			}
+			
+			.mui-page-shadow {
+				position: absolute;
+				right: 100%;
+				top: 0;
+				width: 16px;
+				height: 100%;
+				z-index: -1;
+				content: '';
+			}
+			
+			.mui-page-shadow {
+				background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+				background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+			}
+			
+			.mui-navbar-inner.mui-transitioning,
+			.mui-navbar-inner .mui-transitioning {
+				-webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
+				transition: opacity 300ms ease, transform 300ms ease;
+			}
+			
+			.mui-page {
+				display: none;
+			}
+			
+			.mui-pages .mui-page {
+				display: block;
+			}
+			
+			.mui-page .mui-table-view:first-child {
+				margin-top: 0px;
+			}
+			
+			.mui-page .mui-table-view:last-child {
+				margin-bottom: 30px;
+			}
+			
+			.mui-table-view {
+				margin-top: 10px;
+			}
+			
+			.mui-table-view span.mui-pull-right {
+				color: #999;
+			}
+			
+			.mui-table-view-divider {
+				background-color: #efeff4;
+				font-size: 14px;
+			}
+			
+			.mui-table-view-divider:before,
+			.mui-table-view-divider:after {
+				height: 0;
+			}
+			
+			.head {
+				height: 40px;
+			}
+			
+			#head {
+				line-height: 40px;
+			}
+			
+			.head-img {
+				width: 40px;
+				height: 40px;
+			}
+			
+			#head-img1 {
+				position: absolute;
+				bottom: 10px;
+				right: 40px;
+				width: 40px;
+				height: 40px;
+			}
+			
+			.update {
+				font-style: normal;
+				color: #999999;
+				margin-right: 30px;
+				font-size: 15px
+			}
+			
+			.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-ios .mui-navbar .mui-bar .mui-title {
+				position: static;
+			}
+			/*问题反馈在setting页面单独的css*/
+			
+			#feedback .mui-popover {
+				position: fixed;
+			}
+			
+			#feedback .mui-table-view:last-child {
+				margin-bottom: 0px;
+			}
+			
+			#feedback .mui-table-view:first-child {
+				margin-top: 0px;
+			}
+			
+			.feedback p {
+				padding: 10px;
+			}
+			/*问题反馈在setting页面单独的css==end*/
+		</style>
+	</head>
+
+	<body class="mui-fullscreen">
+		<!--页面主结构开始-->
+		<div id="app" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar">
+				</div>
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+		<!--页面主结构结束-->
+		<!--单页面开始-->
+		<div id="setting" class="mui-page">
+			<!--页面标题栏开始-->
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">设置</h1>
+			</div>
+			<!--页面标题栏结束-->
+			<!--页面主内容区开始-->
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" href="#personInfo">
+									<img class="mui-media-object mui-pull-left head-img mui-hidden" id="head-img" src="">
+									<!--<div class="mui-media-body">
+										Hello MUI
+										<p class='mui-ellipsis'>账号:hellomui</p>
+									</div>-->
+									<div class="mui-media-body">
+										个人信息
+									</div>
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<a href="#account" class="mui-navigate-right">账号与安全</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#" class="mui-navigate-right">实名认证</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<!--<li class="mui-table-view-cell">
+								<a href="#callCenter" class="mui-navigate-right">客服中心</a>
+							</li>-->
+							<li class="mui-table-view-cell">
+								<a href="#feedback" class="mui-navigate-right">意见与反馈</a>
+							</li>
+							<!--<li class="mui-table-view-cell">
+								<a href="#about" class="mui-navigate-right">关于里社区</a>
+							</li>-->
+						</ul>
+						<!--<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<a href="#general" class="mui-navigate-right">通用</a>
+							</li>
+						</ul>-->
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell" style="text-align: center;">
+								<a>退出登录</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--页面主内容区结束-->
+		</div>
+		<!--单页面结束-->
+		<div id="personInfo" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">我的基本资料</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<a id="head" class="mui-navigate-right">头像
+									<span class="mui-pull-right head">
+									<img class="head-img border img-circle mui-action-preview" id="head-img1" src="../img/experienceService/img-2.jpg"/>
+								</span>
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#setName" class="mui-navigate-right">用户名 <i class="mui-pull-right update">Dya123215145</i></a>
+							</li>
+							<!--<li class="mui-table-view-cell">
+								<a href="#setPwd" class="mui-navigate-right">账号密码 <i class="mui-pull-right update">修改</i></a>
+							</li>-->
+							<li class="mui-table-view-cell">
+								<a href="#setTel" class="mui-navigate-right">手机 <i class="mui-pull-right update">12321514555</i></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#setNeighbourhood" class="mui-navigate-right">所在小区 <i class="mui-pull-right update">杭州市西湖区武林1号</i></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#setBabyAge" class="mui-navigate-right">宝宝年龄 <i class="mui-pull-right update">3岁</i></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#setBabySex" class="mui-navigate-right">宝宝性别 <i class="mui-pull-right update">女</i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="setName" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">修改用户名</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-10">
+							<form class="mui-input-group">
+								<div class="mui-input-row">
+									<input type="text" class="mui-input-clear" placeholder="用户名：hjkhkhkhk">
+								</div>
+							</form>
+							<div id="" class="margin-top-bottom-10">
+								以英文字母或汉字开头，限4-16个字符，一个汉字为2个字符
+							</div>
+							<button class="mui-btn mui-btn-block bg-theme color-white">确&nbsp;定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="setTel" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">修改手机号码</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-10">
+							<form class="mui-input-group">
+								<div class="mui-input-row">
+									<input type="text" class="mui-input-clear" placeholder="当前手机号：12345678963">
+								</div>
+							</form>
+							<button class="mui-btn mui-btn-block bg-theme color-white margin-top-bottom-20">确&nbsp;定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="setNeighbourhood" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">修改小区</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-10">
+							<div class="mui-h4 margin-bottom-10">请重新选择您所在的小区</div>
+							<button id='showCityPicker3' class="mui-btn mui-btn-block" type='button'>选择区域</button>
+							<div id='cityResult3' class="ui-alert margin-top-bottom-10"></div>
+							<!--<input type="text" name="cityResult3" id="cityResult3" class="ui-alert" value="" />-->
+							<input type="text" name="" id="" value="" placeholder="小区名字" />
+							<button class="mui-btn mui-btn-block bg-theme color-white margin-top-bottom-10">确&nbsp;定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="setBabyAge" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">修改宝宝年龄</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-10">
+							<form class="mui-input-group">
+								<div class="mui-input-row position-relative">
+									<input type="text" class="mui-input-clear" placeholder="请输入您宝宝的年龄">
+									<span class="position-absolute position-right-30 position-top-10">岁</span>
+								</div>
+							</form>
+							<button class="mui-btn mui-btn-block bg-theme color-white margin-top-bottom-10">确&nbsp;定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="setBabySex" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">修改宝宝性别</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-10">
+							<button id='showSexPicker' class="mui-btn mui-btn-block" type='button'>请选择您宝宝的性别</button>
+							<div id='sexResult' class="ui-alert margin-top-bottom-10"></div>
+							<button class="mui-btn mui-btn-block bg-theme color-white margin-top-bottom-10">确&nbsp;定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="account" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">账号与安全</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a href="#setNewPwd" class="mui-navigate-right">修改登录密码</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#bankCardBanded" class="mui-navigate-right">绑定银行卡</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#bandZhiFuBao" class="mui-navigate-right">绑定支付宝</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#setPwdQuestions" class="mui-navigate-right">密保问题</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="setPwdQuestions" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">密保问题</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-10">
+							<form action="" method="post">
+								<div class="mui-input-row">
+									<div id="" class="margin-bottom-10 mui-ellipsis">
+										您小学班主任叫什么名字？
+									</div>
+									<div class="mui-input-row">
+										<input type="text" class="mui-input-clear" placeholder="请填写答案">
+									</div>
+									<div id="" class="margin-bottom-10 mui-ellipsis">
+										您小学班主任叫什么名字？
+									</div>
+									<div class="mui-input-row">
+										<input type="text" class="mui-input-clear" placeholder="请填写答案">
+									</div>
+								</div>
+								<button class="mui-btn mui-btn-block bg-theme color-white margin-top-bottom-10">确&nbsp;定</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="setNewPwd" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">修改登录密码</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-10">
+							<form class="">
+								<div class="mui-input-row">
+									<div id="" class="margin-bottom-10 padding-0">
+										当前密码：
+									</div>
+									<div class="mui-input-row mui-password">
+										<input type="password" class="mui-input-password">
+									</div>
+									<div id="" class="margin-bottom-10 padding-0">
+										新密码：
+									</div>
+									<div class="mui-input-row mui-password">
+										<input type="password" class="mui-input-password">
+									</div>
+									<div id="" class="margin-bottom-10 padding-0">
+										确认新密码：
+									</div>
+									<div class="mui-input-row mui-password">
+										<input type="password" class="mui-input-password">
+									</div>
+								</div>
+							</form>
+							<a href="#getCheckCode" class="mui-btn mui-btn-block bg-theme color-white margin-top-bottom-10">确&nbsp;定</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="bandCard" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">添加银行卡</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-10">
+							<form action="" method="post">
+								<div id="" class="mui-ellipsis margin-bottom-10 color-gray">
+									请绑定账户本人的银行卡
+								</div>
+								<div class="mui-input-row" style="background-color: #FFFFFF; border-radius: 3px;border: 1px solid rgba(0,0,0,.2);">
+									<label style="width: 25%;">卡号</label>
+									<input type="text" class="mui-input-clear" placeholder="无需网银/免手续费" style="width: 75%;">
+								</div>
+								<div id="" class="margin-top-10 margin-bottom-20 position-relative">
+									<img class="bankIcon" src="../img/icon/工商银行.png" alt="" />
+									<p class="padding-left-right-30 mui-ellipsis">中国工商银行储蓄卡</p>
+								</div>
+								<a href="#checkCardMsg" class="mui-btn mui-btn-block bg-theme color-white margin-top-10">下一步</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="bandZhiFuBao" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">添加银行卡</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-10">
+							<form action="" method="post">
+								<div id="" class="mui-ellipsis margin-bottom-10 color-gray">
+									请输入您本人的支付宝号
+								</div>
+								<div class="mui-input-row">
+									<input type="text" class="mui-input-clear" placeholder="请确保是您本人的支付宝号码">
+								</div>
+								<button id="confirmZhiFuBao" class="mui-btn mui-btn-block bg-theme color-white margin-top-10">确&nbsp;定</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="checkCardMsg" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">验证银行卡信息</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class=" margin-bottom-10 bg-white padding-top-bottom-10">
+							<div id="" class="clearfix">
+
+								<div id="" class="col-percent-25 mui-pull-left padding-left-10 mui-ellipsis">
+									银行卡
+								</div>
+								<div id="" class="col-percent-75 mui-pull-left">
+									中国工商银行储蓄卡
+								</div>
+							</div>
+							<div id="" class="clearfix">
+								<div id="" class="col-percent-25 mui-pull-left padding-left-10 mui-ellipsis">
+									卡号
+								</div>
+								<div id="" class="col-percent-75 mui-pull-left">
+									XXXXXXXXXXXXXXXX
+								</div>
+							</div>
+						</div>
+						<form class="mui-input-group">
+							<div class="mui-input-row">
+								<label>持卡人</label>
+								<input type="text" class="mui-input-clear" placeholder="持卡人姓名">
+							</div>
+							<div class="mui-input-row">
+								<label>手机号</label>
+								<input type="text" class="mui-input-clear" placeholder="银行卡预留手机号">
+							</div>
+							<div class="mui-input-row">
+								<label>身份证</label>
+								<input type="text" class="mui-input-clear" placeholder="持卡人身份证">
+							</div>
+						</form>
+
+						<div id="" class="margin-top-bottom-15 padding-left-right-10">
+							<input type="checkbox" name="" id="" value="" />&nbsp;同意签订关于
+							<a href="#">《XXXXXX的合同》</a>
+						</div>
+						<div id="" class="padding-left-right-10">
+							<a href="#getCheckCode" class="mui-btn mui-btn-block bg-theme color-white">下一步</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="getCheckCode" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">短信验证</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="">
+							<div id="" class="margin-10 color-gray">
+								请输入手机159****2433收到的短信验证码
+							</div>
+							<form class="mui-input-group">
+								<div class="mui-input-row">
+									<label class="">验证码</label>
+									<label class="mui-text-right" style="width: 35%;float: right;">65S重新获取</label>
+									<input type="text" class="mui-input-clear" placeholder="请输入短信验证码" style="width: 40%;">
+								</div>
+							</form>
+							<div id="" class="padding-left-right-10">
+								<a href="#bankCardBanded" class="mui-btn mui-btn-block bg-theme color-white margin-top-bottom-10">确&nbsp;定</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="bankCardBanded" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">短信验证</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="" class="padding-left-right-10">
+							<div id="" class="margin-top-bottom-10 padding-15 bg-theme border-radius-6">
+								<div id="" class="color-white padding-left-30 margin-bottom-15 position-relative">
+									<img class="bankCardIcon" class="bankCardIcon" src="../img/icon/工商银行.png" alt="" /> 中国工商银行储蓄卡
+								</div>
+								<div id="" class="color-white">
+									****&nbsp;****&nbsp;****&nbsp;4531
+								</div>
+							</div>
+							<div id="" class="margin-top-bottom-10">
+								<a href="#bandCard" class="mui-btn mui-btn-block color-theme margin-top-bottom-10"><span class="mui-icon mui-icon-plus"></span>&nbsp;添加银行卡</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="callCenter" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>设置
+				</button>
+				<h1 class="mui-center mui-title">客服中心</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view mui-hidden">
+							<li class="mui-table-view-cell mui-plus-visible">
+								<a id="rate" class="mui-navigate-right">评分鼓励</a>
+							</li>
+							<li class="mui-table-view-cell mui-plus-visible">
+								<a id="welcome" class="mui-navigate-right">欢迎页</a>
+							</li>
+							<li class="mui-table-view-cell mui-plus-visible">
+								<a id="share" class="mui-navigate-right">分享推荐</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="tel" class="mui-navigate-right">客服电话</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="feedback-btn" href="#feedback" class="mui-navigate-right">问题反馈</a>
+							</li>
+							<li id="check_update" class="mui-table-view-cell mui-plus-visible">
+								<a id="update" class="mui-navigate-right">检查更新</a>
+							</li>
+						</ul>
+
+						<div id="" class="bg-white">
+							<div id="" class="padding-top-50 padding-bottom-30 padding-left-right-20 mui-text-center">
+								<a id="tel" class="mui-btn col-percent-80 bg-theme color-white">客服电话</a>
+							</div>
+							<div id="" class="padding-bottom-50 padding-left-right-20">
+								<div id="" class="border padding-top-bottom-40 color-red mui-text-center">
+									<div id="">
+										工作时间：周一至周五 9：00-17：00
+									</div>
+									<div id="">
+										Email：sunrisekid@163.com
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="feedback" class="mui-page feedback">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>关于里社区
+				</button>
+				<button id="submit" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">发送</button>
+				<h1 class="mui-center mui-title">问题反馈</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-content-padded">
+					<div class="mui-inline">问题和意见</div>
+					<a class="mui-pull-right mui-inline" href="#popover">
+						快捷输入
+						<span class="mui-icon mui-icon-arrowdown"></span>
+					</a>
+					<!--快捷输入具体内容，开发者可自己替换常用语-->
+					<div id="popover" class="mui-popover">
+						<div class="mui-popover-arrow"></div>
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<!--仅流应用环境下显示-->
+									<li class="mui-table-view-cell stream">
+										<a href="#">桌面快捷方式创建失败</a>
+									</li>
+									<li class="mui-table-view-cell">
+										<a href="#">界面显示错乱</a>
+									</li>
+									<li class="mui-table-view-cell">
+										<a href="#">启动缓慢，卡出翔了</a>
+									</li>
+									<li class="mui-table-view-cell">
+										<a href="#">偶发性崩溃</a>
+									</li>
+									<li class="mui-table-view-cell">
+										<a href="#">UI无法直视，丑哭了</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mui-input-row">
+					<textarea id='question' class="mui-input-clear question" placeholder="请详细描述你的问题和意见..."></textarea>
+				</div>
+				<p>图片(选填,提供问题截图,总大小10M以下)</p>
+				<div id='image-list' class="row image-list"></div>
+				<p>QQ/邮箱</p>
+				<div class="mui-input-row">
+					<input id='contact' type="text" class="mui-input-clear contact" placeholder="(选填,方便我们联系你 )" />
+				</div>
+				<div class="mui-content-padded">
+					<div class="mui-inline">应用评分</div>
+					<div class="icons mui-inline" style="margin-left: 6px;">
+						<i data-index="1" class="mui-icon mui-icon-star"></i>
+						<i data-index="2" class="mui-icon mui-icon-star"></i>
+						<i data-index="3" class="mui-icon mui-icon-star"></i>
+						<i data-index="4" class="mui-icon mui-icon-star"></i>
+						<i data-index="5" class="mui-icon mui-icon-star"></i>
+					</div>
+				</div><br />
+			</div>
+		</div>
+
+	</body>
+	<script src="../js/mui.min.js "></script>
+	<script src="../js/jquery-2.1.3.min.js"></script>
+	<script src="../js/mui.view.js "></script>
+	<script src='../js/feedback.js'></script>
+	<script src="../js/mui.picker.js"></script>
+	<script src="../js/mui.poppicker.js"></script>
+	<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		mui.init();
+		//初始化单页view
+		var viewApi = mui('#app').view({
+			defaultPage: '#setting'
+		});
+		//初始化单页的区域滚动
+		mui('.mui-scroll-wrapper').scroll();
+		//分享操作
+		var shares = {};
+
+		mui.plusReady(function() {
+			plus.share.getServices(function(s) {
+				if(s && s.length > 0) {
+					for(var i = 0; i < s.length; i++) {
+						var t = s[i];
+						shares[t.id] = t;
+					}
+				}
+			}, function() {
+				console.log("获取分享服务列表失败");
+			});
+		});
+
+		setTimeout(function() {
+			defaultImg();
+			setTimeout(function() {
+				initImgPreview();
+			}, 300);
+		}, 500);
+
+		//去评分
+		document.getElementById("rate").addEventListener('tap', function() {
+			if(mui.os.ios) {
+				location.href = 'https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=682211190&pageNumber=0&sortOrdering=2&type=&mt=8';
+			} else if(mui.os.android) {
+				plus.runtime.openURL("market://details?id=io.dcloud.HelloMUI", function(e) {
+					plus.runtime.openURL("market://details?id=io.dcloud.HelloMUI", function(e) {
+						mui.alert("360手机助手和应用宝，你一个都没装，暂时无法评分，感谢支持");
+					}, "com.qihoo.appstore");
+				}, "com.tencent.android.qqdownloader");
+			}
+		});
+		//客服电话
+		document.getElementById("tel").addEventListener('tap', function() {
+			if(mui.os.plus) {
+				plus.device.dial("114");
+			} else {
+				location.href = 'tel:114';
+			}
+
+		});
+		//		//意见反馈
+		//		document.getElementById("quest").addEventListener('tap', function() {
+		//			
+		//		});
+		//		
+		//检查更新
+		document.getElementById("update").addEventListener('tap', function() {
+			var server = "http://www.dcloud.io/check/update"; //获取升级描述文件服务器地址
+			mui.getJSON(server, {
+				"appid": plus.runtime.appid,
+				"version": plus.runtime.version,
+				"imei": plus.device.imei
+			}, function(data) {
+				if(data.status) {
+					plus.ui.confirm(data.note, function(i) {
+						if(0 == i) {
+							plus.runtime.openURL(data.url);
+						}
+					}, data.title, ["立即更新", "取　　消"]);
+				} else {
+					mui.toast('Hello MUI 已是最新版本~')
+				}
+			});
+		});
+		var view = viewApi.view;
+		(function($) {
+			//处理view的后退与webview后退
+			var oldBack = $.back;
+			$.back = function() {
+				if(viewApi.canBack()) { //如果view可以后退，则执行view的后退
+					viewApi.back();
+				} else { //执行webview后退
+					oldBack();
+				}
+			};
+			//监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+			//第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+			view.addEventListener('pageBeforeShow', function(e) {
+				//				console.log(e.detail.page.id + ' beforeShow');
+			});
+			view.addEventListener('pageShow', function(e) {
+				//				console.log(e.detail.page.id + ' show');
+			});
+			view.addEventListener('pageBeforeBack', function(e) {
+				//				console.log(e.detail.page.id + ' beforeBack');
+			});
+			view.addEventListener('pageBack', function(e) {
+				//				console.log(e.detail.page.id + ' back');
+			});
+		})(mui);
+		//更换头像
+		mui(".mui-table-view-cell").on("tap", "#head", function(e) {
+			if(mui.os.plus) {
+				var a = [{
+					title: "拍照"
+				}, {
+					title: "从手机相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "修改头像",
+					cancel: "取消",
+					buttons: a
+				}, function(b) {
+					switch(b.index) {
+						case 0:
+							break;
+						case 1:
+							getImage();
+							break;
+						case 2:
+							galleryImg();
+							break;
+						default:
+							break
+					}
+				})
+			}
+
+		});
+
+		function getImage() {
+			var c = plus.camera.getCamera();
+			c.captureImage(function(e) {
+				plus.io.resolveLocalFileSystemURL(e, function(entry) {
+					var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+					console.log(s);
+					document.getElementById("head-img").src = s;
+					document.getElementById("head-img1").src = s;
+					//变更大图预览的src
+					//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+					document.querySelector("#__mui-imageview__group .mui-slider-item img").src = s + "?version=" + new Date().getTime();;;
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(s) {
+				console.log("error" + s);
+			}, {
+				filename: "_doc/head.jpg"
+			})
+		}
+
+		function galleryImg() {
+			plus.gallery.pick(function(a) {
+				plus.io.resolveLocalFileSystemURL(a, function(entry) {
+					plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
+						root.getFile("head.jpg", {}, function(file) {
+							//文件已存在
+							file.remove(function() {
+								console.log("file remove success");
+								entry.copyTo(root, 'head.jpg', function(e) {
+										var e = e.fullPath + "?version=" + new Date().getTime();
+										document.getElementById("head-img").src = e;
+										document.getElementById("head-img1").src = e;
+										//变更大图预览的src
+										//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+										document.querySelector("#__mui-imageview__group .mui-slider-item img").src = e + "?version=" + new Date().getTime();;
+									},
+									function(e) {
+										console.log('copy image fail:' + e.message);
+									});
+							}, function() {
+								console.log("delete image fail:" + e.message);
+							});
+						}, function() {
+							//文件不存在
+							entry.copyTo(root, 'head.jpg', function(e) {
+									var path = e.fullPath + "?version=" + new Date().getTime();
+									document.getElementById("head-img").src = path;
+									document.getElementById("head-img1").src = path;
+									//变更大图预览的src
+									//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+									document.querySelector("#__mui-imageview__group .mui-slider-item img").src = path;
+								},
+								function(e) {
+									console.log('copy image fail:' + e.message);
+								});
+						});
+					}, function(e) {
+						console.log("get _www folder fail");
+					})
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(a) {}, {
+				filter: "image"
+			})
+		};
+
+		function defaultImg() {
+			if(mui.os.plus) {
+				plus.io.resolveLocalFileSystemURL("_doc/head.jpg", function(entry) {
+					var s = entry.fullPath + "?version=" + new Date().getTime();;
+					document.getElementById("head-img").src = s;
+					document.getElementById("head-img1").src = s;
+				}, function(e) {
+					document.getElementById("head-img").src = '../img/experienceService/img-2.jpg';
+					document.getElementById("head-img1").src = '../img/experienceService/img-2.jpg';
+				})
+			} else {
+				document.getElementById("head-img").src = '../img/experienceService/img-2.jpg';
+				document.getElementById("head-img1").src = '../img/experienceService/img-2.jpg';
+			}
+
+		}
+		document.getElementById("head-img1").addEventListener('tap', function(e) {
+			e.stopPropagation();
+		});
+		document.getElementById("welcome").addEventListener('tap', function(e) {
+			//显示启动导航
+			mui.openWindow({
+				id: 'guide',
+				url: 'guide.html',
+				show: {
+					aniShow: 'fade-in',
+					duration: 300
+				},
+				waiting: {
+					autoShow: false
+				}
+			});
+		});
+
+		function initImgPreview() {
+			var imgs = document.querySelectorAll("img.mui-action-preview");
+			imgs = mui.slice.call(imgs);
+			if(imgs && imgs.length > 0) {
+				var slider = document.createElement("div");
+				slider.setAttribute("id", "__mui-imageview__");
+				slider.classList.add("mui-slider");
+				slider.classList.add("mui-fullscreen");
+				slider.style.display = "none";
+				slider.addEventListener("tap", function() {
+					slider.style.display = "none";
+				});
+				slider.addEventListener("touchmove", function(event) {
+					event.preventDefault();
+				})
+				var slider_group = document.createElement("div");
+				slider_group.setAttribute("id", "__mui-imageview__group");
+				slider_group.classList.add("mui-slider-group");
+				imgs.forEach(function(value, index, array) {
+					//给图片添加点击事件，触发预览显示；
+					value.addEventListener('tap', function() {
+						slider.style.display = "block";
+						_slider.refresh();
+						_slider.gotoItem(index, 0);
+					})
+					var item = document.createElement("div");
+					item.classList.add("mui-slider-item");
+					var a = document.createElement("a");
+					var img = document.createElement("img");
+					img.setAttribute("src", value.src);
+					a.appendChild(img)
+					item.appendChild(a);
+					slider_group.appendChild(item);
+				});
+				slider.appendChild(slider_group);
+				document.body.appendChild(slider);
+				var _slider = mui(slider).slider();
+			}
+		}
+
+		if(mui.os.stream) {
+			document.getElementById("check_update").display = "none";
+		}
+
+		//设置地址
+		(function($, doc) {
+			$.init();
+			$.ready(function() {
+				//-----------------------------------------
+				//					//级联示例
+				var cityPicker3 = new $.PopPicker({
+					layer: 3
+				});
+				cityPicker3.setData(cityData3);
+				var showCityPickerButton = doc.getElementById('showCityPicker3');
+				var cityResult3 = doc.getElementById('cityResult3');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker3.show(function(items) {
+						cityResult3.innerHTML = "你选择的城市是:" + (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+				//选择宝宝性别
+				var sexPicker = new $.PopPicker();
+				sexPicker.setData([{
+					value: '1',
+					text: '男'
+				}, {
+					value: '2',
+					text: '女'
+				}]);
+				var showSexPickerButton = doc.getElementById('showSexPicker');
+				var sexResult = doc.getElementById('sexResult');
+				showSexPickerButton.addEventListener('tap', function(event) {
+					sexPicker.show(function(items) {
+						sexResult.innerHTML = "你宝宝的性别是: " + (items[0] || {}).text;
+						//						sexResult.innerText = JSON.stringify(items[0]);
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+			});
+		})(mui, document);
+
+		//弹出支付宝确认对话框
+		document.getElementById("confirmZhiFuBao").addEventListener('tap', function() {
+			var btnArray = ['是', '否'];
+			mui.confirm('请确保您填写的是您本人的支付宝账号，我们会将您所获得的返利退还到这个支付宝账户中。', '', btnArray, function(e) {
+				//					if (e.index == 1) {
+				//						info.innerText = '你刚确认MUI是个好框架';
+				//					} else {
+				//						info.innerText = 'MUI没有得到你的认可，继续加油'
+				//					}
+			})
+			mui('#topPopover').popover('toggle', document.getElementById("openPopover"));
+		});
+
+		//基本资料
+		$(function() {
+			$.ajax({
+				type: 'post',
+				dataType: 'json',
+				url: "http://api.sunrisekid.com/get_member",
+				data: {
+					mobile: mobileNum.value,
+					password: loginPwd.value
+				},
+				success: function(data) {
+					if(data.error_code == 0) { //返回error_code=1代表失败，error_code=0代表成功
+						mui.alert(data.error_msg);
+						window.location.href = 'business/businessList.html';
+					} else {
+						mui.alert(data.error_msg);
+					}
+				}
+			});
+		})
+	</script>
+
+</html>

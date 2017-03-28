@@ -1,0 +1,392 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/baseui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commonui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
+		<!--App自定义的css-->
+		<style type="text/css">
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+			
+			.mui-table-view .mui-media-object{
+				line-height: 80px;
+				max-width: 80px;
+				height: 80px;
+			}
+			
+			p.mui-ellipsis{
+				font-size: 0.5em;
+				line-height: 1.5em;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-input-row mui-search col-percent-90 mui-pull-left">
+				<input type="search" class="mui-input-clear" placeholder="">
+			</div>
+			<a><span class="mui-btn mui-btn-link mui-icon mui-icon-chat mui-pull-right padding-top-bottom-0 padding-left-0 margin-left-0"></span></a>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-tab-label">商户</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-chat">
+				<span class="mui-tab-label">体验</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-contact">
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div class="padding-10 margin-bottom-10 bg-white">
+				<div class="margin-top-bottom-5 condition">
+					<div class="mui-col mui-col-xs-3 margin-top-bottom-5" style="vertical-align: top;">
+						年龄
+					</div>
+					<div class="mui-col mui-col-xs-9">
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							全部
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							0-1岁
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							1-3岁
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							3-6岁
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							6岁以上
+						</div>
+					</div>
+				</div>
+				<div class="margin-top-bottom-5 condition">
+					<div class="mui-col mui-col-xs-3 margin-top-bottom-5" style="vertical-align: top;">
+						类型
+					</div>
+					<div class="mui-col mui-col-xs-9">
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							全部
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							早教英语
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							才艺绘画
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							亲子摄影
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							生活娱乐
+						</div>
+					</div>
+				</div>
+				<div class="margin-top-bottom-5 condition">
+					<div class="mui-col mui-col-xs-3 margin-top-bottom-5" style="vertical-align: top;">
+						类型
+					</div>
+					<div class="mui-col mui-col-xs-9">
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							全部
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							工作日
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							周末
+						</div>
+						<div class="mui-col mui-col-xs-4 margin-top-bottom-5">
+							节假日
+						</div>
+					</div>
+				</div>
+			<div id="" class="margin-top-bottom-5 mui-text-center">
+				<button id='' class="mui-btn bg-theme color-white margin-bottom-5 col-percent-50" type='button'>筛选</button>
+			</div>
+			</div>
+			<div class="">
+				<div id="">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+								<div class="mui-media-body">
+									<div class='mui-ellipsis'>
+										英语学习体验课程
+									</div>
+										<div class="mui-col mui-col-xs-8">
+											<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+											<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+										</div>
+										<div class="mui-col mui-col-xs-4">
+											<p class='mui-ellipsis mui-text-right'>均价：&yen;30000</p>
+											<p class='mui-ellipsis mui-text-right'>168m</p>
+										</div>
+									<p class='mui-ellipsis'>
+										<span class="mui-icon mui-icon-location fsize-1-3"></span>
+										三墩公平路同仁汇邻里中心108-2</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+								<div class="mui-media-body">
+									<div class='mui-ellipsis'>
+										英语学习体验课程
+									</div>
+										<div class="mui-col mui-col-xs-8">
+											<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+											<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+										</div>
+										<div class="mui-col mui-col-xs-4">
+											<p class='mui-ellipsis mui-text-right'>均价：&yen;30000</p>
+											<p class='mui-ellipsis mui-text-right'>168m</p>
+										</div>
+									<p class='mui-ellipsis'>
+										<span class="mui-icon mui-icon-location fsize-1-3"></span>
+										三墩公平路同仁汇邻里中心108-2</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+								<div class="mui-media-body">
+									<div class='mui-ellipsis'>
+										英语学习体验课程
+									</div>
+										<div class="mui-col mui-col-xs-8">
+											<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+											<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+										</div>
+										<div class="mui-col mui-col-xs-4">
+											<p class='mui-ellipsis mui-text-right'>均价：&yen;30000</p>
+											<p class='mui-ellipsis mui-text-right'>168m</p>
+										</div>
+									<p class='mui-ellipsis'>
+										<span class="mui-icon mui-icon-location fsize-1-3"></span>
+										三墩公平路同仁汇邻里中心108-2</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="../img/experienceService/img-2.jpg">
+								<div class="mui-media-body">
+									<div class='mui-ellipsis'>
+										英语学习体验课程
+									</div>
+										<div class="mui-col mui-col-xs-8">
+											<p class='mui-ellipsis'>萌宝乐园婴童会所</p>
+											<p class='mui-ellipsis'>0-1岁|课程类型|课时数</p>
+										</div>
+										<div class="mui-col mui-col-xs-4">
+											<p class='mui-ellipsis mui-text-right'>均价：&yen;30000</p>
+											<p class='mui-ellipsis mui-text-right'>168m</p>
+										</div>
+									<p class='mui-ellipsis'>
+										<span class="mui-icon mui-icon-location fsize-1-3"></span>
+										三墩公平路同仁汇邻里中心108-2</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/mui.zoom.js"></script>
+	<script src="../js/mui.previewimage.js"></script>
+	<script>
+		mui.previewImage();
+	</script>
+
+</html>

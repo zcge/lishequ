@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>jQuery仿app产品筛选分类导航 - xw素材网</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="x-rim-auto-match" content="none" />
+		<meta name="HandheldFriendly" content="true" />
+		<link type="text/css" rel="stylesheet" href="../css/demo.css">
+		<script src="../js/jquery-2.1.3.min.js"></script>
+		<script src="../js/demo.js"></script>
+
+		<style type="text/css">
+			.grade-eject.grade-w-roll {
+				margin-top: 0px!important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- screening -->
+		<div id="">
+			<img src="../img/experienceService/img-1.jpg" style="max-width: 100%;" />
+		</div>
+		<div class="screening navbar-wrapper" id="navbar-wrapper">
+			<ul>
+				<li class="Regional">距离排序</li>
+				<li class="Brand">授课年龄</li>
+				<li class="Sort">服务类型</li>
+			</ul>
+		</div>
+		<!-- End screening -->
+		<!-- grade -->
+		<div class="grade-eject" style="margin-top: 0;">
+			<ul class="grade-w" id="gradew">
+				<li onclick="grade1(this)">附近</li>
+				<li onclick="grade1(this)">西湖区</li>
+				<li onclick="grade1(this)">拱墅区</li>
+				<li onclick="grade1(this)">萧山区</li>
+				<li onclick="grade1(this)">江干区</li>
+				<li onclick="grade1(this)">滨江区</li>
+				<li onclick="grade1(this)">余杭区</li>
+				<li onclick="grade1(this)">上城区</li>
+				<li onclick="grade1(this)">临安市</li>
+				<li onclick="grade1(this)">富阳市</li>
+				<li onclick="grade1(this)">下城区</li>
+				<li onclick="grade1(this)">桐庐县</li>
+				<li onclick="grade1(this)">建德市</li>
+				<li onclick="grade1(this)">淳安县</li>
+			</ul>
+			<ul class="grade-t" id="gradet">
+				<li onclick="gradet(this)">附近（智能距离）</li>
+				<li onclick="gradet(this)">1千米</li>
+				<li onclick="gradet(this)">3千米</li>
+				<li onclick="gradet(this)">5千米</li>
+				<li onclick="gradet(this)">10千米</li>
+				<li onclick="gradet(this)">全程</li>
+			</ul>
+		</div>
+		<!-- End grade -->
+		<!-- Category -->
+		<div class="Category-eject">
+			<ul class="Category-w" id="Categorytw">
+				<li onclick="Categorytw(this)">全部</li>
+				<li onclick="Categorytw(this)">幼儿0-3岁</li>
+				<li onclick="Categorytw(this)">幼童3-6岁</li>
+				<li onclick="Categorytw(this)">大童6岁以上</li>
+			</ul>
+		</div>
+		<!-- End Category -->
+		<!-- Category -->
+		<div class="Sort-eject Sort-height">
+			<ul class="Sort-Sort" id="Sort-Sort">
+				<li onclick="Sorts(this)">婴儿游泳</li>
+				<li onclick="Sorts(this)">亲子摄影</li>
+				<li onclick="Sorts(this)">早教中心</li>
+				<li onclick="Sorts(this)">孕产护理</li>
+				<li onclick="Sorts(this)">儿童乐园</li>
+				<li onclick="Sorts(this)">幼儿园</li>
+				<li onclick="Sorts(this)">幼儿教育</li>
+				<li onclick="Sorts(this)">托班/托儿所</li>
+			</ul>
+		</div>
+		<!-- End Category -->
+		<!-- demo-content -->
+		<div class="demo-content">Content</div>
+		<!-- End demo-content -->
+		<div style="text-align:center;margin:100px 0;padding:500px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+			<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+			<p>来源：
+				<a href="http://www.xwcms.net/" target="_blank">xw素材网</a>
+			</p>
+		</div>
+
+		<script type="text/javascript" src="../assets/stickUp-master/example/js/stickUp.min.js"></script>
+		<script type="text/javascript">
+			//initiating jQuery
+			jQuery(function($) {
+				$(document).ready(function() {
+					//enabling stickUp on the '.navbar-wrapper' class
+					$('.navbar-wrapper').stickUp();
+//					$('.navbar-wrapper').click(function() {
+//						$("html,body").animate({scrollTop:$("#navbar-wrapper").offset().top},0);//1000是ms,也可以用slow代替 
+//
+//					});
+				});
+//				$(window).scroll(function(){
+//					
+//				}
+			});
+		</script>
+	</body>
+
+</html>

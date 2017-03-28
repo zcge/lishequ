@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
+		<link rel="stylesheet" type="text/css" href="../css/baseui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commonui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+
+		<style type="text/css">
+			body {
+				background-color: #efeff4;
+			}
+			
+			.mui-input-group .mui-input-row {
+				height: 50px;
+			}
+			
+			.mui-input-group .mui-input-row:after {
+				left: 0;
+			}
+			
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 12px;
+			}
+			
+			
+			.mui-toast-message{
+				padding: 50px 20px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">支付订单</h1>
+		</header>
+		<div id="" class="mui-content">
+			<div id="" class="padding-10 margin-top-bottom-10 bg-white">
+				<div id="" class="mui-text-center">
+					支付剩余时间
+				</div>
+				<div id="" class="mui-text-center margin-top-10 margin-bottom-30">
+					<span id="" class="padding-left-right-5 bg-darkgray color-white inline-block margin-left-right-3">
+						1
+					</span>
+					<span id="" class="padding-left-right-5 bg-darkgray color-white inline-block margin-left-right-3">
+						4
+					</span>：
+					<span id="" class="padding-left-right-5 bg-darkgray color-white inline-block margin-left-right-3">
+						5
+					</span>
+					<span id="" class="padding-left-right-5 bg-darkgray color-white inline-block margin-left-right-3">
+						1
+					</span>
+				</div>
+				<div id="" class="margin-bottom-10 padding-left-10 fsize-2-3 color-gray">
+					&yen;3000
+				</div>
+				<div id="" class="padding-left-10">
+					儿童英语套餐
+				</div>
+			</div>
+			<div id="" class="margin-top-bottom-10 bg-white">
+				<div class="">
+					<form class="mui-input-group">
+						<div class="mui-input-row mui-radio" style="vertical-align: middle;">
+							<div class=" padding-left-right-10 padding-top-bottom-15 line-height-20 position-relative">
+								<span class="mui-icon-extra mui-icon-extra-alipay color-blue position-absolute" style="top: 13px;left: 10px;"></span>
+								<span class="padding-left-30
+								">支付宝支付</span>
+							</div>
+							<input name="radio1" type="radio" checked="checked">
+						</div>
+						<div class="mui-input-row mui-radio" style="vertical-align: middle;">
+							<div class=" padding-left-right-10 padding-top-bottom-15 line-height-20 position-relative">
+								<span class="mui-icon mui-icon-weixin color-green position-absolute" style="top: 13px;left: 10px;"></span>
+								<span class="padding-left-30
+								">微信支付</span>
+							</div>
+							<input name="radio1" type="radio">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div id="" class="padding-left-right-10">
+				<button id='confirmToPay' class="mui-btn mui-btn-block bg-theme color-white margin-top-20 margin-bottom-20" type='button'>确认支付&nbsp;&nbsp;&yen;&nbsp;45</button>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			//弹出支付成功对话框
+			document.getElementById("confirmToPay").addEventListener('tap', function() {
+				mui.toast('恭喜您已完成支付', {
+					duration: 'long',
+					type: 'div'
+				});
+			});
+		</script>
+	</body>
+
+</html>

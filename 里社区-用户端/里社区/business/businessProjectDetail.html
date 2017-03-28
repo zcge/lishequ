@@ -1,0 +1,399 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
+		<link rel="stylesheet" type="text/css" href="../css/baseui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/commonui.css" />
+		<link rel="stylesheet" href="../css/app.css" />
+		<!--App自定义的css-->
+		<style type="text/css">
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+			
+			.mui-col {
+				margin-right: -4px;
+				display: inline-block;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<!--<h1 class="mui-title">儿童英语</h1>-->
+			<!--<a class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">分享</a>-->
+			<a><span class="mui-btn mui-btn-link mui-icon-extra mui-icon-extra-heart mui-pull-right"></span></a>
+			<a><span class="mui-btn mui-btn-link mui-icon-extra mui-icon-extra-share mui-pull-right"></span></a>
+		</header>
+		<nav class="mui-bar mui-bar-tab padding-left-right-10">
+			<a href="../business/businessSubmitOrder_1.html" id='' class="mui-btn mui-btn-block bg-theme color-white" type='button'>立即购买</a>
+		</nav>
+		<div class="mui-content">
+			<p>
+				<img src="../img/experienceService/img-1.jpg" data-preview-src="" data-preview-group="1" />
+			</p>
+			<div class="bg-white">
+				<div class="padding-top-bottom-20 padding-left-right-10 color-dimgray position-relative">
+					<span class="text-bold fsize-1-6">&yen; 30000</span>
+					<a href="../business/businessSubmitOrder_1.html" type="button" class="mui-btn bg-theme color-white position-absolute position-top-10 position-right-10">
+					立即抢购
+				</a>
+				</div>
+			</div>
+			<div class="margin-top-bottom-10 bg-white">
+				<div class="padding-10 border-bottom color-gray">商家信息</div>
+				<div id="" class="padding-10">
+					<div class="margin-bottom-10">萌宝乐园婴童会所</div>
+					<div id="">
+						<div id="" class="mui-col mui-col-xs-10 border-right">
+							<div id="">
+								<a id="icon-location"><span class="mui-icon mui-icon-location fsize-1-3"></span></a>
+								<span id="" class="color-gray fsize-0-11">
+								三墩公平路同仁汇邻里中心108-2
+							</span>
+							</div>
+							<div id="">
+								<a id="icon-location"><span class="mui-icon mui-icon-location fsize-1-3"></span></a>
+								<span id="" class="color-gray fsize-0-11">
+								13km
+							</span>
+							</div>
+						</div>
+						<div id="" class="mui-col mui-col-xs-2 mui-text-center">
+							<p class="mui-ellipsis padding-bottom-8">
+								<a id="icon-location"><span class="mui-icon mui-icon-phone-filled"></span></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="" class="margin-top-bottom-10 bg-white">
+				<div id="" class="padding-10 border-bottom">
+					套餐
+				</div>
+				<div class="mui-content-padded">
+					<div class="mui-media-body">
+						<div class="mui-ellipsis mui-h4 mui-text-center">儿童英语</div>
+						<p class='mui-ellipsis margin-top-bottom-5'>萌宝乐园婴童会所</p>
+						<p class='mui-ellipsis margin-top-bottom-5'><span class="padding-right-15">0-1岁</span><span class="padding-right-15">课程类型</span><span class="padding-right-15">课时数</span></p>
+						<div class="margin-top-15 margin-bottom-20 padding-left-right-20">
+							<div class="fsize-1-2">课程亮点</div>
+							<ol class="margin-top-bottom-5 padding-left-20">
+								<li>
+									课程亮点课程亮点课程亮点
+								</li>
+								<li>
+									课程亮点课程亮点课程亮点
+								</li>
+								<li>
+									课程亮点课程亮点课程亮点
+								</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							图文详情
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div id="" class="margin-top-10 bg-white">
+				<div id="" class="padding-10 color-gray border-bottom">预约须知</div>
+				<div id="" class="padding-left-right-10 padding-top-10 padding-bottom-5">
+					<div id="" class="padding-bottom-5 text-color-theme">
+						有效期
+					</div>
+					<div id="" class="padding-bottom-5">
+						XXXXXXXXXXXXXXXXXXXXXXXX
+					</div>
+					<div id="" class="padding-bottom-5 text-color-theme">
+						预约信息
+					</div>
+					<div id="" class="padding-bottom-5">
+						XXXXXXXXXXXXXXXXXXXXXXXX
+					</div>
+					<div id="" class="padding-bottom-5 text-color-theme">
+						适用人数
+					</div>
+					<div id="" class="padding-bottom-5">
+						XXXXXXXXXXXXXXXXXXXXXXXX
+					</div>
+					<div id="" class="padding-bottom-5 text-color-theme">
+						适用人群
+					</div>
+					<div id="" class="padding-bottom-5">
+						XXXXXXXXXXXXXXXXXXXXXXXX
+					</div>
+					<div id="" class="padding-bottom-5 text-color-theme">
+						规则提醒
+					</div>
+					<div id="" class="padding-bottom-5">
+						<ul class="margin-top-bottom-5 padding-left-20">
+							<li>
+								课程亮点课程亮点课程亮点
+							</li>
+							<li>
+								课程亮点课程亮点课程亮点
+							</li>
+							<li>
+								课程亮点课程亮点课程亮点
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--<div id="" class="margin-top-10 bg-white">
+				<div class="padding-10 border-bottom color-gray">购买须知</div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<div class="mui-col mui-col-xs-6">
+							有效期
+						</div>
+						<div class="mui-col mui-col-xs-6 mui-text-right">
+							2017-09-23
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-col mui-col-xs-6">
+							预约信息
+						</div>
+						<div class="mui-col mui-col-xs-6 mui-text-right">
+							2017-09-23
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-col mui-col-xs-6">
+							适用人数
+						</div>
+						<div class="mui-col mui-col-xs-6 mui-text-right">
+							2人
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-col mui-col-xs-6">
+							适用人群
+						</div>
+						<div class="mui-col mui-col-xs-6 mui-text-right">
+							1-3岁
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-col mui-col-xs-6">
+							规则提醒
+						</div>
+						<div class="mui-col mui-col-xs-6 mui-text-right">
+							XXXXXX
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-col mui-col-xs-6">
+							商家服务
+						</div>
+						<div class="mui-col mui-col-xs-6 mui-text-right">
+							
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-col mui-col-xs-6">
+							温馨提示
+						</div>
+						<div class="mui-col mui-col-xs-6 mui-text-right">
+							
+						</div>
+					</li>
+				</ul>
+			</div>-->
+		</div>
+
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/mui.zoom.js"></script>
+	<script src="../js/mui.previewimage.js"></script>
+	<script>
+//		mui.previewImage();
+	</script>
+
+</html>
