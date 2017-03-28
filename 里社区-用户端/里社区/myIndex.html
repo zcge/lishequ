@@ -51,26 +51,6 @@
 	</head>
 
 	<body>
-		<nav class="mui-bar mui-bar-tab">
-			<!--<a class="mui-tab-item mui-active" href="#tabbar">
-				<span class="mui-tab-label">商家</span>
-			</a>
-			<a class="mui-tab-item" href="#tabbar-with-chat">
-				<span class="mui-tab-label">体验</span>
-			</a>
-			<a class="mui-tab-item" href="#tabbar-with-contact">
-				<span class="mui-tab-label">我的</span>
-			</a>-->
-			<a class="mui-col mui-col-xs-4" href="business/businessList.html">
-				<span class="mui-tab-label">商家</span>
-			</a>
-			<a class="mui-col mui-col-xs-4 " href="experienceService/esList.html">
-				<span class="mui-tab-label">体验</span>
-			</a>
-			<a class="mui-col mui-col-xs-4 " href="my/myIndex.html">
-				<span class="mui-tab-label">我的</span>
-			</a>
-		</nav>
 		<div class="mui-content bg-white">
 			<div class="mui-content-padded">
 				<div class="mui-h4">请输入您的家庭地址</div>
@@ -78,15 +58,17 @@
 				<button id='showCityPicker3' class="mui-btn mui-btn-block" type='button'>选择区域</button>
 				<div id='cityResult3' class="ui-alert"></div>
 				<!--<input type="text" name="cityResult3" id="cityResult3" class="ui-alert" value="" />-->
-				<input type="text" name="yaoQingMa" id="yaoQingMa" value="" placeholder="小区名字" />
+				<input type="text" name="yaoQingMa" id="community" value="" placeholder="小区名字" />
 				<input type="text" name="yaoQingMa" id="yaoQingMa" value="" placeholder="社区门店邀请码：（选填）" />
 				<div id="" class="margin-top-30" style="text-align: center;">
-					<a href="business/businessList.html" class="color-theme"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></a>
+					<a href="javascript:void(0)" class="color-theme"><i class="fa fa-arrow-circle-right fa-2x update" aria-hidden="true"></i></a>
 				</div>
 			</div>
 		</div>
 
 		<script src="js/mui.min.js"></script>
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="js/api.js"></script>
 		<!--<script src="../js/mui.picker.min.js"></script>-->
 		<script src="js/mui.picker.js"></script>
 		<script src="js/mui.poppicker.js"></script>
@@ -94,24 +76,77 @@
 		<script src="js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			(function($, doc) {
-				$.init();
-				$.ready(function() {
-					//-----------------------------------------
-					//					//级联示例
-					var cityPicker3 = new $.PopPicker({
-						layer: 3
-					});
-					cityPicker3.setData(cityData3);
-					var showCityPickerButton = doc.getElementById('showCityPicker3');
-					var cityResult3 = doc.getElementById('cityResult3');
-					showCityPickerButton.addEventListener('tap', function(event) {
-						cityPicker3.show(function(items) {
-							cityResult3.innerHTML = "你选择的城市是:" + (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
-							//返回 false 可以阻止选择框的关闭
-							//return false;
+				var self = {
+					id:"24",
+					items:[],
+					community:"",
+					shop_code:"",
+					init:function(){
+						$.init();
+						self.initPicker();
+						self.bindEvent();
+					},
+					initPicker:function(){
+						self.cityPicker3 = new $.PopPicker({
+							layer: 3
 						});
-					}, false);
-				});
+						self.cityPicker3.setData(cityData3);
+					},
+					bindEvent:function(){
+						$.ready(function() {
+							var showCityPickerButton = doc.getElementById('showCityPicker3');
+							var cityResult3 = doc.getElementById('cityResult3');
+							showCityPickerButton.addEventListener('tap', function(event) {
+								self.cityPicker3.show(function(items) {
+									self.items = items;
+									cityResult3.innerHTML = "你选择的城市是:" + (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+									//返回 false 可以阻止选择框的关闭
+									//return false;
+								});
+							}, false);
+						});
+						$('body').on('click','.update',function(){
+							if(!self.items.length){
+								mui.alert("请选择你的城市。");
+								return false;
+							}
+							self.community = jQuery("#community").val();
+							self.shop_code = jQuery("#yaoQingMa").val();
+							if(!self.community){
+								mui.alert("请选择你的小区。");
+								return false;
+							}
+							//验证通过
+							// if(localStorage.ch_member_id){
+								self.editInfo();
+							// }else{
+								//跳转登录页面
+							// }
+						})
+					},
+					editInfo:function(){
+						var address = '';
+						self.items.forEach(function(obj,key) {
+							address +=obj.text
+						});
+						address+=self.community;
+						var data = {
+							member_id:'24',
+							address:address
+						}
+						if(self.shop_code){
+							data.shop_code = self.shop_code;
+						}
+						console.log('修改参数',data)
+						communityAPI.editMember(data,function(res){
+							location.href = './business/businessList.html'
+						},function(err){
+							console.log(err)
+						})
+					}
+				}
+				self.init();
+				
 			})(mui, document);
 		</script>
 	</body>
