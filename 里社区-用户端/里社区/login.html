@@ -3,23 +3,11 @@
 
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<title></title>
-		<!--<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.5/css/bootstrap.min.css" />
-	    <link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.5/css/font-awesome.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="css/baseui.css"/>
-	    <link rel="stylesheet" type="text/css" href="css/common-swiper.css"/>
-	    <link rel="stylesheet" type="text/css" href="css/commonui.css"/>
-	    
-	    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-	    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-	    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
-	    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-	    <script type="text/javascript" src="assets/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-	    <script type="text/javascript" src="js/touch-0.2.14.min.js"></script>
-		<title></title>-->
+		<title>里社区</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  		<meta content="yes" name="apple-mobile-web-app-capable">
+  		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+ 		<meta content="telephone=no" name="format-detection">
 		<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.5/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 		<link href="css/mui.min.css" rel="stylesheet" />
@@ -36,6 +24,9 @@
 				right:0;
 				top:0;
 				bottom:0
+			}
+			.ch-guide{
+				display: none;
 			}
 			.mui-slider,.mui-slider-group,.mui-slider-item {
 				height:100%!important;
@@ -63,10 +54,7 @@
 				width:100%;
 				height:100%;
 			}
-			.ch-gudie-1,.ch-gudie-2,.ch-gudie-3{
-				background-size:100% 100%;
-				background:url("./img/guideImages/guide1.jpeg");
-			}
+			
 			.bg-white{
 				display: none;
 			}
@@ -74,7 +62,7 @@
 	</head>
 
 	<body>
-		<div class="mui-slider">
+		<div class="mui-slider ch-guide">
 			<div class="mui-slider-group">
 				<div class="mui-slider-item ">
 					<img src="./img/guideImages/guide1.jpeg" alt="">
@@ -94,7 +82,6 @@
 				<div class="mui-indicator"></div>
 			</div>
 		</div>
-
 		<div class="mui-content bg-white">
 			<div class="mui-content-padded">
 				<div id="" class="mui-input-row">
@@ -107,139 +94,51 @@
 				
 				</div>
 
-				<button id='signupBtn' class="mui-btn mui-btn-block bg-theme color-white margin-top-40 margin-bottom-20" type='button'>进入里社区</button>
+				<button id='loginBtn' class="mui-btn mui-btn-block bg-theme color-white margin-top-40 margin-bottom-20" type='button'>进入里社区</button>
 				<div id="" class="position-relative">
-					<a href="forgotPwd.html">忘记密码？</a>
-					<a href="register.html" class="position-absolute position-right-0">注册</a>
+					<a href="./forgotPwd.html">忘记密码？</a>
+					<a href="./register.html" class="position-absolute position-right-0">注册</a>
 				</div>
 			</div>
 		</div>
-
-		<!--<div class="container signin position-relative">
-        	<div id="" class="signBox margin-top-150 padding-left-right-30">
-        		<div class="row">
-	        		<div class="form-group">
-		                <div class="col-sm-12 ">
-		                    <input type="text" class="form-control signMs" id="txtaccount" runat="server" placeholder="请输入您的手机号码" />
-		                </div>
-		            </div>
-		            <div class="form-group">
-		                <div class="col-sm-12 position-relative">
-		                	<a class="position-absolute" style="top:7px;left: 20px;">点击获取验证码</a>
-		                	<div id="" class="margin-left-120">
-		                		<input type="text" class="form-control signMs" id="txtNickName" runat="server" placeholder="" />
-		                	</div>
-		                </div>
-		            </div>
-		            <div class="form-group" style="margin-top:77px;">
-		                <div class="col-sm-12">
-		                    <input id="Button1" class="btn btn-block bg-theme color-white" runat="server" type="button"
-		                        value="进入里社区">
-		                </div>
-		            </div>
-		            <div class="form-group hidden">
-		                <div class="col-sm-12">
-		                    <asp:Button ID="btnRegister" runat="server" OnClick="btnLogin_Click" />
-		                </div>
-		            </div>
-		            <div class="form-group" >
-		                <div class="col-sm-12">
-		                	<div id="" class="position-relative">
-		                		<a href="#">忘记密码？</a>
-		                		<a href="#" class="position-absolute position-right-0">注册</a>
-		                	</div>
-		                </div>
-		            </div>
-	        	</div>
-	        </div>
-	    </div>
-	    -->
-
 		<script src="js/mui.min.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
+		<script src="./js/api.js"></script>
 		<script type="text/javascript">
 		$(function(){
+			if(!localStorage.ch_guide){
+				$(".ch-guide").css("display","block");
+			}else{
+				$(".bg-white").css("display","block");
+			}
 			$("body").on("click",".ch-enter",function(){
+				localStorage.ch_guide = "true";
+				$(".ch-guide").css("display","none");
 				$(".bg-white").css("display","block");
 			});
-		})
+			var bindEvent = function(){
+				var body = $("body");
+				body.on("click","#loginBtn",function(){
+					let mobileNum = $("#mobileNum").val();
+					let loginPwd = $("#loginPwd").val();
+					communityAPI.login({
+						mobile:mobileNum,
+						password:loginPwd
+					},function(e){
+						if(e.error_code == 1){
+							mui.alert("登陆失败:"+e.error_msg);
+						}else{
+							localStorage.ch_member_id = e.data.member_id;
+							location.href = "./myIndex.html";
+						}
+					},function(e){
+						mui.alert("登陆失败")
+					})
+				});
+			}
+			bindEvent();
 
-		// document.querySelector('.mui-slider').addEventListener('slide', function(event) {
-		// 	//注意slideNumber是从0开始的；
-		// 	document.getElementById("info").innerText = "你正在看第"+(event.detail.slideNumber+1)+"张图片";
-		// });
-// 			mui.init();
-
-// 			//手机号码验证
-// 			var signupBtn = document.getElementById("signupBtn");
-// 			var mobileNum = document.getElementById("mobileNum");
-// 			var loginPwd = document.getElementById("loginPwd");
-// 			var msgCheckCode = document.getElementById("msgCheckCode");
-
-// 			signupBtn.addEventListener('tap', function() {
-// 				validatemobile(mobileNum);
-// 			});
-
-// 			function validatemobile(par) {
-// 				var translatematrixREa = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
-// 				var matrix = translatematrixREa.test(par.value);
-// 				//验证结果
-// 				if(mobileNum.value == '') {
-// 					mui.alert("请填写您的手机号码。");
-// 				} else {
-// 					if(matrix == false) {
-// 						mui.alert("请填写正确的手机号码！");
-// 					}
-// 					//					else {
-// 					//						if(msgCheckCode.value == "") {
-// 					//							mui.alert("请填写短信验证码");
-// 					//						} 
-// 					else if(loginPwd.value == '' || !loginPwd.value) {
-// 						mui.alert("请填写您的登录密码。");
-// 					} else {
-// 						$.ajax({
-// 							type: 'post',
-// 							dataType: 'json',
-// 							url: "http://api.sunrisekid.com/login",
-// 							data: {
-// 								mobile: mobileNum.value,
-// 								password: loginPwd.value
-// 							},
-// 							success: function(data) {
-// 								if(data.error_code == 0) { //返回error_code=1代表失败，error_code=0代表成功
-// 									mui.alert(data.error_msg);
-// 									//									session["member_id"]=member_id;
-// 									sessionStorage.userinf = data.member_id;
-// 									debugger;
-// //									window.location.href = 'business/businessList.html';
-// 								} else {
-// 									mui.alert(data.error_msg);
-// 								}
-// 							}
-// 						});
-// 					}
-// 				}
-// 			}
-
-// 			//定义一个60秒计时器变量
-// 			var countdown = 60;
-// 			//构造一个倒计时函数
-// 			function settime(obj) {
-// 				if(countdown == 0) {
-// 					obj.removeAttribute("disabled");
-// 					obj.value = "免费获取验证码";
-// 					countdown = 60;
-// 					return;
-// 				} else {
-// 					obj.setAttribute("disabled", true);
-// 					obj.value = "重新发送(" + countdown + ")";
-// 					countdown--;
-// 				}
-// 				//过1秒后执行倒计时函数
-// 				setTimeout(function() {
-// 					settime(obj)
-// 				}, 1000)
-// 			}
+		});
 		</script>
 	</body>
 
